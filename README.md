@@ -80,6 +80,8 @@ BatteryLife живёт в трее и тихо делает своё дело. �
 
 ### Запустить из исходников
 
+> Это только если хочешь покопаться в коде. Обычному пользователю Python не нужен — скачай `.exe` из Releases и всё.
+
 ```
 git clone https://github.com/Mixaold/BatteryLife
 cd BatteryLife
@@ -87,7 +89,7 @@ pip install -r requirements.txt
 pythonw main.py
 ```
 
-Python 3.10+, Windows 10/11
+Нужен Python 3.10+, Windows 10/11
 
 Собрать `.exe` самому:
 ```
@@ -168,6 +170,8 @@ Saved to `%APPDATA%\BatteryLife\` — something like `C:\Users\YourName\AppData\
 
 ### Run from source
 
+> Only if you want to dig into the code. Regular users don't need Python — just grab the `.exe` from Releases.
+
 ```
 git clone https://github.com/Mixaold/BatteryLife
 cd BatteryLife
@@ -175,7 +179,7 @@ pip install -r requirements.txt
 pythonw main.py
 ```
 
-Python 3.10+, Windows 10/11
+Requires Python 3.10+, Windows 10/11
 
 Build the exe yourself:
 ```
