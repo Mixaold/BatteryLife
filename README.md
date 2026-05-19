@@ -57,14 +57,6 @@ BatteryLife живёт в трее и тихо делает своё дело. �
 - **Автозапуск** — включить чтобы не запускать руками каждый раз
 - Сменить устройство, язык, выйти
 
-**Обычный сценарий:**
-1. Зарядил до 100%
-2. Подключил к ПК
-3. Пользуешься как обычно, приложение само всё считает
-4. Батарея сдохла — отключил, поставил на зарядку
-5. Правый клик по трею → **Новый цикл заряда**
-6. Повторить пару раз — и знаешь реальные цифры
-
 ---
 
 ### Где лежат данные
@@ -152,14 +144,6 @@ From the menu:
 - **Cycle history** — see how your battery has changed over time
 - **Autostart** — launch with Windows so you never miss a session
 - Change device, switch language, exit
-
-**Normal flow:**
-1. Charge to 100%
-2. Connect to your PC
-3. Use normally — app tracks everything automatically
-4. Battery dies, disconnect, plug in to charge
-5. Right-click tray → **New charge cycle**
-6. Do this a few times and you'll know the real number
 
 ---
 
