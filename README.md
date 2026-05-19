@@ -18,9 +18,9 @@
 
 Готового инструмента для этого не нашлось и поэтому я написал свой XDDD, да это ну мега конечно тупо, но мне было настолько нечего делать...
 
-BatteryLife живёт в трее и тихо делает своё дело. Подключил наушники — пошёл таймер. Отключил на зарядку — сессия записалась. Через пару циклов видишь реальные числа: держат 24 часа? Или уже еле-еле 15? Без гаданий.
+BatteryLife живёт в трее и тихо делает своё дело, подключил наушники — пошёл таймер, отключил на зарядку — сессия записалась, через пару циклов видишь реальные числа: держат 24 часа? или уже еле-еле 15? без гаданий
 
-Работает с любым Bluetooth-устройством у которого Windows видит заряд — наушники, колонки, геймпады, True Wireless и т.д.
+Работает с любым Bluetooth-устройством у которого Windows видит заряд — наушники, колонки, геймпады, True Wireless и т.д
 
 ---
 
@@ -30,19 +30,19 @@ BatteryLife живёт в трее и тихо делает своё дело. �
 2. Скачай **`BatteryLife.exe`**
 3. Запусти — всё
 
-Никакого Python, никакой установки. Один файл `.exe` и готово.
+Никакого Python, никакой установки, один файл `.exe` и готово
 
-> **Первый запуск:** выскочит окно настройки. Жми **"Найти устройства"** — покажет что сейчас подключено по Bluetooth. Выбирай своё и жми **Выбрать**.
+> **Первый запуск:** выскочит окно настройки, жми **"Найти устройства"** — покажет что сейчас подключено по Bluetooth, выбирай своё и жми **Выбрать**
 
 ---
 
 ### Как пользоваться
 
-После настройки прячется в трей (правый нижний угол, рядом с часами).
+После настройки прячется в трей (правый нижний угол, рядом с часами)
 
 | Действие | Что будет |
 |---|---|
-| **Двойной клик** по иконке | Окно со статистикой |
+| **Клик** по иконке | Окно со статистикой |
 | **Правый клик** по иконке | Меню |
 
 В окне статистики видно:
@@ -61,7 +61,7 @@ BatteryLife живёт в трее и тихо делает своё дело. �
 
 ### Где лежат данные
 
-В `%APPDATA%\BatteryLife\`, то есть примерно `C:\Users\ИмяПользователя\AppData\Roaming\BatteryLife\`.
+В `%APPDATA%\BatteryLife\`, то есть примерно `C:\Users\ИмяПользователя\AppData\Roaming\BatteryLife\`
 
 - перетащи `.exe` куда угодно — данные не потеряются
 - обнови приложение — данные останутся
@@ -69,18 +69,23 @@ BatteryLife живёт в трее и тихо делает своё дело. �
 
 ---
 
-### Технически
+### Ресурсы системы
 
-- Каждые 5 секунд проверяет подключение через Windows Bluetooth API — без лишних процессов
-- Заряд берёт из хранилища свойств устройства Windows, тот же источник что и "Параметры"
-- Иконка в трее анимируется когда подключено и меняет цвет: 🟢 ≥60%, 🟡 30–59%, 🔴 <30%
-- Данные в JSON — можно открыть блокнотом и посмотреть
+Прила практически ничего не потребляет, раз в 5 секунд делает один короткий запрос к Windows и засыпает обратно, ОЗУ занимает около 20 МБ, на ЦП влияния нет
+
+---
+
+### Доверяешь ли ты этому .exe?
+
+Понимаю что скачивать `.exe` с гитхаба незнакомого чела — это стрёмно, поэтому весь исходный код открыт и лежит прямо тут в репозитории, ничего скрытого нет
+
+Если хочешь проверить — нажми **Code → Download ZIP**, скачай архив с кодом и закинь его в любую нейронку (ChatGPT, Claude, Gemini — любую), они нормально читают код и скажут если там что-то подозрительное
 
 ---
 
 ### Запустить из исходников
 
-> Это только если хочешь покопаться в коде. Обычному пользователю Python не нужен — скачай `.exe` из Releases и всё.
+> Это только если хочешь покопаться в коде, обычному пользователю Python не нужен — скачай `.exe` из Releases и всё
 
 ```
 git clone https://github.com/Mixaold/BatteryLife
@@ -104,13 +109,13 @@ build.bat
 
 ### What's this
 
-So I bought some used Sony WH-1000XM4s. Guy said the battery was still good. But I wanted the actual number — how many hours do they really last on a full charge vs the 30 hours Sony claims for new ones?
+So I bought some used Sony WH-1000XM4s, guy said the battery was still good, but I wanted the actual number — how many hours do they really last on a full charge vs the 30 hours Sony claims for new ones?
 
-Couldn't find any tool that just does that, so I made one.
+Couldn't find any tool that just does that, so I made one
 
-BatteryLife sits in your system tray and tracks silently. Connect your headphones — timer starts. Disconnect to charge — session saved. After a couple cycles you've got real data: still at 24 hours or down to 15? No guessing.
+BatteryLife sits in your system tray and tracks silently, connect your headphones — timer starts, disconnect to charge — session saved, after a couple cycles you've got real data: still at 24 hours or down to 15? no guessing
 
-Works with any Bluetooth device Windows can see the battery for — headphones, earbuds, speakers, controllers, whatever.
+Works with any Bluetooth device Windows can see the battery for — headphones, earbuds, speakers, controllers, whatever
 
 ---
 
@@ -120,19 +125,19 @@ Works with any Bluetooth device Windows can see the battery for — headphones, 
 2. Grab **`BatteryLife.exe`**
 3. Run it
 
-No Python, no setup, no installer. Just a single `.exe`.
+No Python, no setup, no installer, just a single `.exe`
 
-> **First run:** a setup window pops up. Click **"Detect devices"** to see what's connected via Bluetooth right now, pick your device, hit **Select**.
+> **First run:** a setup window pops up, click **"Detect devices"** to see what's connected via Bluetooth right now, pick your device, hit **Select**
 
 ---
 
 ### How to use it
 
-After setup it hides in the **system tray** (bottom-right corner, near the clock).
+After setup it hides in the **system tray** (bottom-right corner, near the clock)
 
 | Action | What it does |
 |---|---|
-| **Double-click** the icon | Opens the stats window |
+| **Click** the icon | Opens the stats window |
 | **Right-click** the icon | Opens the menu |
 
 The stats window shows:
@@ -151,7 +156,7 @@ From the menu:
 
 ### Where's the data
 
-Saved to `%APPDATA%\BatteryLife\` — something like `C:\Users\YourName\AppData\Roaming\BatteryLife\`.
+Saved to `%APPDATA%\BatteryLife\` — something like `C:\Users\YourName\AppData\Roaming\BatteryLife\`
 
 - move the `.exe` anywhere, data stays
 - update the app, data stays
@@ -159,18 +164,23 @@ Saved to `%APPDATA%\BatteryLife\` — something like `C:\Users\YourName\AppData\
 
 ---
 
-### Tech stuff
+### System resources
 
-- Polls Bluetooth connection every 5 seconds via Windows Bluetooth API — no background junk
-- Battery level from the Windows device property store, same place Settings reads it from
-- Tray icon glows when connected, color-coded: 🟢 ≥60%, 🟡 30–59%, 🔴 <30%
-- Data's in JSON files — open in Notepad if you're curious
+The app uses basically nothing, every 5 seconds it makes one quick call to Windows and goes back to sleep, RAM usage is around 20 MB, zero CPU impact
+
+---
+
+### Do you trust this .exe?
+
+Totally get it — downloading a `.exe` from some random GitHub is sketchy, that's why the full source code is right here in this repo, nothing hidden
+
+If you want to check it yourself — hit **Code → Download ZIP**, grab the source archive and drop it into any AI (ChatGPT, Claude, Gemini, whatever), they can read code just fine and will flag anything suspicious
 
 ---
 
 ### Run from source
 
-> Only if you want to dig into the code. Regular users don't need Python — just grab the `.exe` from Releases.
+> Only if you want to dig into the code, regular users don't need Python — just grab the `.exe` from Releases
 
 ```
 git clone https://github.com/Mixaold/BatteryLife
