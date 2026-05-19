@@ -1,6 +1,7 @@
 @echo off
 cd /d "%~dp0"
-echo [BatteryLife] Collecting PyInstaller...
+echo [BatteryLife] Generating icon...
+python generate_icon.py
 
 set PIB=%APPDATA%\Python\Python314\Scripts\pyinstaller.exe
 if not exist "%PIB%" (
@@ -10,7 +11,7 @@ if not exist "%PIB%" (
 )
 
 echo [BatteryLife] Building...
-"%PIB%" --onefile --noconsole --name BatteryLife ^
+"%PIB%" --onefile --noconsole --name BatteryLife --icon icon.ico ^
   --hidden-import=pystray._win32 ^
   --hidden-import=pythoncom ^
   --hidden-import=wmi ^
@@ -18,7 +19,6 @@ echo [BatteryLife] Building...
   --hidden-import=win32com.client ^
   --hidden-import=win32api ^
   --hidden-import=win32con ^
-  --collect-all=wmi ^
   main.py
 
 if errorlevel 1 (

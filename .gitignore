@@ -12,5 +12,6 @@ venv/
 docs/screenshot.png
 *.spec
 BatteryLife.exe
+icon.ico
 Test/
 .claude/

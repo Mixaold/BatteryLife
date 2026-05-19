@@ -42,6 +42,7 @@ def _dark_titlebar(win):
         pass
 
 
+
 # ── Fade helper ───────────────────────────────────────────────────────────────
 
 def _fade(win, start: float, end: float, steps: int, step_ms: int, on_done=None):
@@ -174,6 +175,7 @@ def _run_onboarding(root: tk.Tk) -> str | None:
     win.update()
     _dark_titlebar(win)
 
+
     result = [None]
 
     # Page 1 — Welcome
@@ -231,6 +233,7 @@ def _show_setup_dialog(root: tk.Tk, current: str = "") -> str | None:
     win.update()
     _dark_titlebar(win)
 
+
     result = [None]
     _build_device_page(win, win, result, current=current)
 
@@ -279,6 +282,14 @@ def _open_stats(root: tk.Tk, app: TrayApp, data: dict, bat: BatteryMonitor, cfg:
     win.focus_force()
     win.update()
     _dark_titlebar(win)
+
+    # Clicks go directly to widgets without stealing focus first
+    try:
+        _hwnd = ctypes.windll.user32.GetParent(win.winfo_id())
+        _style = ctypes.windll.user32.GetWindowLongW(_hwnd, -20)
+        ctypes.windll.user32.SetWindowLongW(_hwnd, -20, _style | 0x08000000)
+    except Exception:
+        pass
 
     W           = 300
     H_COLLAPSED = 255
