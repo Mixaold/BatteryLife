@@ -1,19 +1,45 @@
 import json
+import os
 import shutil
 import sys
 from datetime import datetime
 from pathlib import Path
 
-
-def _root() -> Path:
-    if getattr(sys, 'frozen', False):
-        return Path(sys.executable).parent
-    return Path(__file__).parent
-
-
-_BASE_DIR     = _root() / "data"
+_APPDATA      = os.environ.get("APPDATA") or str(Path.home() / "AppData" / "Roaming")
+_BASE_DIR     = Path(_APPDATA) / "BatteryLife"
 _DEFAULT_FILE = _BASE_DIR / "sessions.json"   # legacy path
 DATA_FILE     = _DEFAULT_FILE
+
+
+def migrate_from_exe_dir() -> None:
+    """
+    One-time migration: copy data from the old location (data/ next to exe/script)
+    into %APPDATA%\\BatteryLife so the app works wherever the exe is placed.
+    """
+    migrated_flag = _BASE_DIR / ".migrated_v2"
+    if migrated_flag.exists():
+        return
+
+    # Determine old data directory
+    if getattr(sys, 'frozen', False):
+        old_dir = Path(sys.executable).parent / "data"
+    else:
+        old_dir = Path(__file__).parent / "data"
+
+    _BASE_DIR.mkdir(parents=True, exist_ok=True)
+
+    if old_dir.exists():
+        for item in old_dir.iterdir():
+            dest = _BASE_DIR / item.name
+            try:
+                if item.is_dir() and not dest.exists():
+                    shutil.copytree(item, dest)
+                elif item.is_file() and not dest.exists():
+                    shutil.copy2(item, dest)
+            except Exception:
+                pass
+
+    migrated_flag.touch()
 
 
 def safe_name(name: str) -> str:
@@ -21,12 +47,10 @@ def safe_name(name: str) -> str:
     return s[:64] or "default"
 
 
-# Keep private alias for internal backwards compat
 _safe_name = safe_name
 
 
 def set_device(name: str) -> None:
-    """Switch active data file to the per-device path. Migrates legacy file only once."""
     global DATA_FILE
     if not name:
         DATA_FILE = _DEFAULT_FILE

@@ -1,16 +1,9 @@
 import json
-import sys
+import os
 from pathlib import Path
 
-
-def _root() -> Path:
-    # When packaged with PyInstaller --onefile, store data next to the exe
-    if getattr(sys, 'frozen', False):
-        return Path(sys.executable).parent
-    return Path(__file__).parent
-
-
-_PATH = _root() / "data" / "config.json"
+_APPDATA = os.environ.get("APPDATA") or str(Path.home() / "AppData" / "Roaming")
+_PATH    = Path(_APPDATA) / "BatteryLife" / "config.json"
 
 DEFAULTS: dict = {
     "device_name":      "",
@@ -21,7 +14,7 @@ DEFAULTS: dict = {
 
 
 def load() -> dict:
-    _PATH.parent.mkdir(exist_ok=True)
+    _PATH.parent.mkdir(parents=True, exist_ok=True)
     if not _PATH.exists():
         cfg = DEFAULTS.copy()
         _save(cfg)
@@ -48,7 +41,7 @@ def load() -> dict:
 
 
 def save(cfg: dict) -> None:
-    _PATH.parent.mkdir(exist_ok=True)
+    _PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(_PATH, "w", encoding="utf-8") as f:
         json.dump(cfg, f, ensure_ascii=False, indent=2)
 

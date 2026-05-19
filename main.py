@@ -576,6 +576,9 @@ def _auto_detect_device(cfg: dict) -> bool:
 def main():
     _mutex = _acquire_single_instance()  # noqa: F841
 
+    # Migrate data from old location (data/ next to exe) to %APPDATA%\BatteryLife
+    storage.migrate_from_exe_dir()
+
     cfg = config.load()
 
     lang = cfg["language"]
