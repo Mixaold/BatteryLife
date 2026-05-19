@@ -34,10 +34,10 @@ def _make_image(connected: bool, level: int | None = None, phase: float = 0.0) -
     img  = Image.new("RGBA", (S, S), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
 
-    draw.ellipse(bbox, fill=(22, 22, 22, 255))
+    draw.ellipse(bbox, fill=(30, 30, 30, 255))
 
     if not connected:
-        draw.arc(bbox, start=-90, end=270, fill=(65, 65, 65, 200), width=rw)
+        draw.arc(bbox, start=-90, end=270, fill=(140, 140, 140, 220), width=rw)
         return img.resize((64, 64), Image.LANCZOS)
 
     r, g, b = _color_for_battery(level)
@@ -239,10 +239,16 @@ class TrayApp:
                 phase = (phase + dt / _ANIM_PERIOD) % 1.0
                 level = self._bat.level if self._bat else None
                 if self._icon:
-                    self._icon.icon = _make_image(True, level, phase)
+                    try:
+                        self._icon.icon = _make_image(True, level, phase)
+                    except OSError:
+                        pass
                 frame_counter[0] += 1
                 if frame_counter[0] % _TITLE_EVERY == 0 and self._icon:
-                    self._icon.title = self._title()
+                    try:
+                        self._icon.title = self._title()
+                    except OSError:
+                        pass
 
         threading.Thread(target=_loop, daemon=True, name="TrayAnim").start()
 

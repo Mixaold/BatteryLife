@@ -11,6 +11,7 @@ import config
 import i18n
 import storage
 from battery import BatteryMonitor
+from generate_icon import make_icon_image
 from monitor import BluetoothMonitor, list_connected_bt_devices
 from tray import TrayApp
 
@@ -603,6 +604,16 @@ def main():
     show_q: queue.Queue = queue.Queue()
     root = tk.Tk()
     root.withdraw()
+
+    # Set app icon for all Toplevel windows (taskbar + title bar)
+    try:
+        from PIL import ImageTk
+        _icon_img   = make_icon_image(32)
+        _icon_photo = ImageTk.PhotoImage(_icon_img)
+        root.iconphoto(True, _icon_photo)
+        root._icon_ref = _icon_photo  # prevent GC
+    except Exception:
+        pass
 
     first_run = not cfg["device_name"]
 
